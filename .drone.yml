@@ -1,12 +1,19 @@
 kind: pipeline
 type: docker
-name: my-app
-steps:
-  - name: build-and-deploy
-    image: 'docker:20'
-    volumes:
-      - '/var/run/docker.sock:/var/run/docker.sock'
-    commands:
-      - docker build -t my-app .
-      - 'docker run -d -p 8080:80 --name my-app my-app'
 
+name: my-app
+
+steps:
+  - name: build
+    image: node:14
+    commands:
+      - npm install
+      - npm run build
+      - docker build -t my-app .
+
+  - name: deploy
+    image: docker:20
+    commands:
+      - docker stop my-app || true
+      - docker rm my-app || true
+      - docker run -d -p 8000:8080 --name my-app my-app
