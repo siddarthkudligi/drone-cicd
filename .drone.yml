@@ -4,22 +4,9 @@ type: docker
 name: my-app
 
 steps:
-  - name: build
-    image: node:14
+  - name: build-and-deploy
+    image: docker:20
     commands:
-      - cd frontend
-      - npm install
-      - npm run build
       - docker build -t my-app .
-    when:
-      event:
-        - push
-        - pull_request
-
-  - name: deploy
-    image: nginx:alpine
-    commands:
-      - docker stop my-app || true
-      - docker rm my-app || true
       - docker run -d -p 8080:80 --name my-app my-app
 
