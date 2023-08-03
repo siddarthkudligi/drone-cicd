@@ -1,0 +1,22 @@
+kind: pipeline
+type: docker
+
+name: my-app
+
+steps:
+  - name: build
+    image: docker:20
+    commands:
+      - docker build . -t my-app
+    when:
+      event:
+        - push
+        - pull_request
+
+  - name: deploy
+    image: docker:20
+    commands:
+      - docker stop my-app || true
+      - docker rm my-app || true
+      - docker run -d -p 8080:80 --name my-app my-app
+
