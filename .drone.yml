@@ -17,7 +17,7 @@ steps:
         - pull_request
 
   - name: deploy
-    image: docker:20
+    image: nginx:alpine
     commands:
       - docker stop my-app || true
       - docker rm my-app || true
