@@ -7,6 +7,7 @@ steps:
   - name: build
     image: node:14
     commands:
+      - cd frontend
       - npm install
       - npm run build
       - docker build -t my-app .
