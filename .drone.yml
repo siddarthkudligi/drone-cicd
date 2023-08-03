@@ -7,7 +7,9 @@ steps:
   - name: build
     image: node:14
     commands:
-      - docker build . -t my-app
+      - npm install
+      - npm run build
+      - docker build -t my-app .
     when:
       event:
         - push
