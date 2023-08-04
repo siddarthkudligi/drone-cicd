@@ -20,20 +20,19 @@ name: default
 
 steps:
 - name: test
-  image: docker:dind
+  image: test-img
   volumes:
   - name: dockersock
     path: /var/run
   commands:
-  - sleep 20 # give docker enough time to start
+  - sleep 5 # give docker enough time to start
   - docker build . -t my-app
   - docker run -d -p 8080:80 my-app
   - docker ps -a 
-  - sleep 1000
 
 services:
 - name: docker
-  image: docker:dind
+  image: test-img
   privileged: true
   volumes:
   - name: dockersock
