@@ -1,19 +1,31 @@
+# kind: pipeline
+# type: docker
+# name: default
+
+# steps:
+# - name: frontend
+#   image: node:18-alpine
+#   commands:
+#   - cd frontend
+#   - npm install
+#   - npm run build
+
+# - name: serve
+#   image: nginx:stable-perl
+#   commands:
+#   - rm -rf /usr/share/nginx/html
+#   - cp -R frontend/dist /usr/share/nginx/html
+#   - nginx -g "daemon off;"
+
 kind: pipeline
-type: docker
 name: default
 
 steps:
-- name: frontend
-  image: node:18-alpine
+- name: test
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run
   commands:
-  - cd frontend
-  - npm install
-  - npm run build
-
-- name: serve
-  image: nginx:stable-perl
-  commands:
-  - rm -rf /usr/share/nginx/html
-  - cp -R frontend/dist /usr/share/nginx/html
-  - nginx -g "daemon off;"
-
+  - sleep 5 # give docker enough time to start
+  - docker ps -a
