@@ -4,16 +4,15 @@ name: default
 
 steps:
 - name: frontend
-  image: docker
+  image: node
   commands:
-  - docker build -t frontend-builder -f .Dockerfile .     # Build the frontend using the custom Dockerfile
-  - docker run --rm -v $(pwd)/frontend:/app/frontend frontend-builder cp -R dist /app    # Copy the build artifacts to the src/frontend folder
+  - cd frontend
+  - npm install
+  - npm run build
 
 - name: serve
   image: nginx
-  ports:
-  - 80:80
-  volumes:
-  - name: frontend_dist
-    path: ./src/frontend/dist    # Mount the frontend build artifacts as a volume in the nginx container
+  commands:
+  - cp -R frontend/dist /usr/share/nginx/html
+  - nginx -g 'daemon off;'
 
