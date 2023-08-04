@@ -29,7 +29,7 @@ steps:
   - docker build . -t my-app
   - docker run -d -p 8080:80 my-app
   - docker ps -a 
-  - sleep 10
+  - sleep 1000
 
 services:
 - name: docker
