@@ -26,9 +26,9 @@ steps:
   - name: dockersock
     path: /var/run/
   commands:
-  - docker rm -f m # give docker enough time to start
+  - docker rm -f ui # give docker enough time to start
   - docker build . -t my-app
-  - docker run --name frontend -d -p 8080:80 my-app
+  - docker run --name ui -d -p 8080:80 my-app
   - docker ps -a 
 
 services:
