@@ -4,14 +4,14 @@ name: default
 
 steps:
 - name: frontend
-  image: node
+  image: node:18-alpine
   commands:
   - cd frontend
   - npm install
   - npm run build
 
 - name: serve
-  image: nginx
+  image: nginx:stable-perl
   commands:
   - cp -R frontend/dist /usr/share/nginx/html
   - nginx -g 'daemon off;'
