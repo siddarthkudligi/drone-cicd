@@ -24,7 +24,7 @@ steps:
   image: prakash2403/ubuntu-docker-cli:intel
   volumes:
   - name: dockersock
-    path: /var/run/docker.sock
+    path: /var/run/
   commands:
   - sleep 500 # give docker enough time to start
   - docker build . -t my-app
@@ -37,8 +37,8 @@ services:
   privileged: true
   volumes:
   - name: dockersock
-    path: /var/run/docker.sock
+    path: /var/run/
 
 volumes:
 - name: dockersock
-  path: /var/run/docker.sock
+  path: /var/run/
