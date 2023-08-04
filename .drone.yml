@@ -28,6 +28,8 @@ steps:
   - sleep 20 # give docker enough time to start
   - docker build . -t my-app
   - docker run -d -p 8080:80 my-app
+  - docker ps -a 
+  - sleep 10
 
 services:
 - name: docker
