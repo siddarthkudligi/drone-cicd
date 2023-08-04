@@ -14,5 +14,5 @@ steps:
   image: nginx:stable-perl
   commands:
   - cp -R frontend/dist /usr/share/nginx/html
-  - nginx -g 'daemon off;'
+  - nginx 
 
