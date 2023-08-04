@@ -5,7 +5,7 @@ docker run \
   --env=DRONE_RPC_SECRET=7979966c6d1d694458a3f1474b107c99 \
   --env=DRONE_SERVER_HOST=157.90.249.161 \
   --env=DRONE_SERVER_PROTO=http \
-  --env=DRONE_USER_CREATE=username:sid,admin:true \
+  --env=DRONE_USER_CREATE=username:siddarthkudligi,admin:true \
   --publish=80:80 \
   --publish=443:443 \
   --restart=always \

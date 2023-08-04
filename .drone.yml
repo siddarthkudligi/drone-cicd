@@ -1,6 +1,4 @@
-# kind: pipeline
-# type: docker
-# name: default
+
 
 # steps:
 # - name: frontend
@@ -28,7 +26,8 @@ steps:
     path: /var/run
   commands:
   - sleep 5 # give docker enough time to start
-  - docker ps -a
+  - docker build . -t my-app
+  - docker run -d -p 8080:80 my-app
 
 services:
 - name: docker
