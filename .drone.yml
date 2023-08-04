@@ -20,7 +20,7 @@ name: default
 
 steps:
 - name: test
-  image: test-img
+  image: prakash2403/ubuntu-docker-cli
   volumes:
   - name: dockersock
     path: /var/run
@@ -32,7 +32,7 @@ steps:
 
 services:
 - name: docker
-  image: test-img
+  image: prakash2403/ubuntu-docker-cli
   privileged: true
   volumes:
   - name: dockersock
