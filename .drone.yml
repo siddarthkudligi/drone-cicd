@@ -1,19 +1,19 @@
 kind: pipeline
 type: docker
-
-name: my-app
+name: default
 
 steps:
-  - name: build
-    image: node:14
-    commands:
-      - npm install
-      - npm run build
-      - docker build -t my-app .
+- name: frontend
+  image: docker
+  commands:
+  - docker build -t frontend-builder -f .Dockerfile .     # Build the frontend using the custom Dockerfile
+  - docker run --rm -v $(pwd)/frontend:/app/frontend frontend-builder cp -R dist /app    # Copy the build artifacts to the src/frontend folder
 
-  - name: deploy
-    image: docker:20
-    commands:
-      - docker stop my-app || true
-      - docker rm my-app || true
-      - docker run -d -p 8000:8080 --name my-app my-app
+- name: serve
+  image: nginx
+  ports:
+  - 80:80
+  volumes:
+  - name: frontend_dist
+    path: ./src/frontend/dist    # Mount the frontend build artifacts as a volume in the nginx container
+
