@@ -26,7 +26,7 @@ steps:
   - name: dockersock
     path: /var/run/
   commands:
-  - sleep 500 # give docker enough time to start
+  - sleep 5 # give docker enough time to start
   - docker build . -t my-app
   - docker run -d -p 8080:80 my-app
   - docker ps -a 
