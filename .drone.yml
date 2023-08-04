@@ -15,5 +15,5 @@ steps:
   commands:
   - rm -rf /usr/share/nginx/html
   - cp -R frontend/dist /usr/share/nginx/html
-  - nginx -g daemon off;
+  - nginx -g "daemon off;"
 
