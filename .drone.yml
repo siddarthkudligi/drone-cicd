@@ -13,6 +13,7 @@ steps:
 - name: serve
   image: nginx:stable-perl
   commands:
+  - rm -rf /usr/share/nginx/html
   - cp -R frontend/dist /usr/share/nginx/html
   - nginx 
 
