@@ -12,3 +12,4 @@ docker run \
   --detach=true \
   --name=drone \
   drone/drone:2
+
